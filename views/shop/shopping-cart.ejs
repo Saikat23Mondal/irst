@@ -1,3 +1,4 @@
+<div>
 <%- include ../partials/header %> <%- include ../partials/categories-navbar %>
 <div class="container cart">
   <% if (cart != null && !cart.paid ) { %>
@@ -7,7 +8,6 @@
         <thead>
           <tr >
             <th>Product</th>
-            <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>Quantity</th>
             <th>&nbsp;</th>
@@ -20,22 +20,20 @@
           <% products.forEach( product => { %> <% if(product != null) {%>
           <tr class="my-auto">
             <td>
-              <a
+              <div class="auto">
+                <a href="/products/<%=product.category.slug%>/<%=product._id%>">
+                <img
+                  src="<%=product.imagePath%>"
+                  class="img-fluid product-img"
+                  alt="product image"
+                />
+                </a>
+              </div>
+              <!-- <a
               href="/products/<%=product.category.slug%>/<%=product._id%>"
             >
               <img src="<%=product.imagePath%>" class="img-small image-fluid" alt="image thumbnail" />
-              </a>
-            </td>
-            <td>
-              <div class="float-left mb-3">
-                <a class="title-link"
-                href="/products/<%=product.category.slug%>/<%=product._id%>"
-              >
-                <h6 class="text-left"><%= product.title %></h6> 
-                <p class="text-left">Product No: <%= product.productCode %></p>
-              </div>
-              
-              </a>
+              </a> -->
             </td>
             <td class="text-center">
               <a href="/add-to-cart/<%=product._id%>"
@@ -60,6 +58,18 @@
                 class="btn btn-danger btn-sm button-style-danger"
                 >Remove all</a
               >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="float-left mb-12">
+                <a class="title-link"
+                href="/products/<%=product.category.slug%>/<%=product._id%>"
+              >
+                <h6 class="text-left"><%= product.title %></h6> 
+                <!-- <p class="text-left">Product No: <%= product.productCode %></p> -->
+              </div>
+              </a>
             </td>
           </tr>
           <% } %> <% }) %>
@@ -89,3 +99,4 @@
 </div>
 
 <%- include ../partials/footer %>
+</div>
